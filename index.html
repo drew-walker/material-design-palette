@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <title>Material Design Color Palette</title>
+    <style>
+        body {
+            margin:0
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="/dist/material-design-palette.js"></script>
+    <!--<script src="/dist/material-design-palette.min.js"></script>-->
+    <script>
+        var swatches = document.createElement('div');
+
+        Object.keys(MaterialDesignPalette.colors).forEach(function(colorKey) {
+            var swatch = document.createElement('div');
+            swatch.style.backgroundColor = MaterialDesignPalette.colors[colorKey];
+            swatch.style.width = '7%';
+            swatch.style.height = '30px';
+            swatch.style.float = 'left';
+            swatch.style.fontFamily = 'Arial, sans-serif';
+            swatch.style.fontSize = '11px';
+
+            swatch.innerHTML = colorKey;
+            swatches.appendChild(swatch);
+        });
+
+        document.getElementById('root').appendChild(swatches);
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "name": "material-design-palette",
+  "version": "0.0.1",
+  "description": "An easy API for using the Material Design color palette in javascript",
+  "main": "./lib/index.js",
+  "scripts": {
+    "start": "node server.js",
+    "prepublish": "npm run build",
+    "coverage": "babel-node ./node_modules/.bin/babel-istanbul cover _mocha && babel-istanbul check-coverage",
+    "build": "rimraf lib dist && npm run lint && babel src --out-dir=lib && webpack && webpack -p",
+    "test": "mocha --compilers js:babel-core/register",
+    "lint": "eslint *.babel.js src test"
+  },
+  "keywords": [
+    "Material Design",
+    "Color Palette",
+    "ES6"
+  ],
+  "author": "Drew Walker <drew.walker@gmail.com>",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-core": "^6.7.4",
+    "babel-eslint": "^6.0.0-beta.6",
+    "babel-istanbul": "^0.7.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-register": "^6.7.2",
+    "chai": "^3.5.0",
+    "eslint": "^2.4.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-babel": "^3.1.0",
+    "eslint-plugin-mocha": "^2.0.0",
+    "mocha": "^2.4.5",
+    "rimraf": "^2.5.2",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
