@@ -14,19 +14,63 @@
     <!--<script src="/dist/material-design-palette.min.js"></script>-->
     <script>
         var swatches = document.createElement('div');
+        var currentColorFamily;
+        var currentColorContainer;
+        var swatch;
+
+        function sameColorFamily(colorKey) {
+            return getColorFamily(colorKey) === currentColorFamily;
+        }
+
+        function endsWith(haystack, needle) {
+            return haystack.charAt(haystack.length - 1) === needle;
+        }
+
+        function getColorFamily(colorKey) {
+            var colorFamily = colorKey.match(/[^0-9]+/)[0];
+            return endsWith(colorFamily, 'A') ? colorFamily.substr(0, colorFamily.length - 1) : colorFamily;
+        }
+
+        function getColorWeight(colorKey) {
+            return Number(colorKey.match(/[^0-9]+([0-9]+)/)[1]);
+        }
+
+        function isLightColor(colorKey) {
+            if (colorKey === 'black') {
+                return false;
+            } else {
+                return colorKey === 'white' || getColorWeight(colorKey) < 400;
+            }
+        }
 
         Object.keys(MaterialDesignPalette.colors).forEach(function(colorKey) {
-            var swatch = document.createElement('div');
+            if (!sameColorFamily(colorKey)) {
+                if (currentColorContainer) swatches.appendChild(currentColorContainer);
+                currentColorFamily = getColorFamily(colorKey);
+                currentColorContainer = document.createElement('div');
+                currentColorContainer.style.width = '33%';
+                currentColorContainer.style.float = 'left';
+                currentColorContainer.style.padding = '0 0 30px 0'
+            }
+            swatch = document.createElement('div');
             swatch.style.backgroundColor = MaterialDesignPalette.colors[colorKey];
-            swatch.style.width = '7%';
-            swatch.style.height = '30px';
+            swatch.style.width = '80%';
+            swatch.style.padding = '8px 2%';
             swatch.style.float = 'left';
             swatch.style.fontFamily = 'Arial, sans-serif';
             swatch.style.fontSize = '11px';
+            swatch.style.fontWeight = 'bold';
+            swatch.style.color = isLightColor(colorKey) ? '#000' : '#fff';
 
-            swatch.innerHTML = colorKey;
-            swatches.appendChild(swatch);
+            swatch.innerHTML = 'color.' + colorKey;
+            swatch.style.border = '1px solid ' + MaterialDesignPalette.colors[colorKey];
+            currentColorContainer.appendChild(swatch);
         });
+
+        swatch.style.border = '1px solid #eee';
+        currentColorContainer.appendChild(swatch);
+        swatches.appendChild(currentColorContainer);
+
 
         document.getElementById('root').appendChild(swatches);
     </script>
