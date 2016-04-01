@@ -1,6 +1,6 @@
 {
   "name": "material-design-palette",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An easy API for using the Material Design color palette in javascript",
   "main": "./lib/index.js",
   "scripts": {
