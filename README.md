@@ -4,6 +4,7 @@
 
 ## ES6
 
+```
 import MaterialDesignPalette from 'material-design-palette';
 
 export default class SomeReactComponent extends Component {
@@ -11,9 +12,11 @@ export default class SomeReactComponent extends Component {
         return <Card titleColor={MaterialDesignPalette.color.blue400} />
     }
 }
+```
 
 ## CommonJS
 
+```
 var MaterialDesignPalette = require('material-design-palette');
 
 module.exports = React.createClass({
@@ -21,6 +24,7 @@ module.exports = React.createClass({
         return <Card titleColor={MaterialDesignPalette.color.blue400} />
     }
 })
+```
 
 # Palette
 
